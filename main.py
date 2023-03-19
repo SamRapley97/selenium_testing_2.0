@@ -23,10 +23,10 @@ button_locator = driver.find_element(By.XPATH, "//button[@id='submit']")
 button_locator.click()
 
 # Verify new page URL contains practicetestautomation.com/logged-in-successfully/
-assert driver.current_url == "https://practicetestautomation.com/logged-in-successfully/"
+assert driver.current_url == "https://practicetestautomation.com/logged-in-successfully/", f"{driver.current_url} does not match expected"
 
 # Verify new page contains expected text ('Congratulations' or 'successfully logged in')
-assert 'Congratulation' or 'successfully logged in' in driver.page_source
+assert 'Congratulation' or 'successfully logged in' in driver.page_source, "Neither of the two phrases were found in the page source"
 
 # Verify button Log out is displayed on the new page
 
