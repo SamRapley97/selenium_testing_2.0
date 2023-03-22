@@ -1,4 +1,6 @@
 import time
+
+import pytest
 from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -7,6 +9,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 class TestPositiveScenarios:
+
+    @pytest.mark.login
+    @pytest.mark.positive
     def test_positive_login(self):
         # Go to webpage
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
