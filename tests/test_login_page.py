@@ -1,7 +1,7 @@
 import time
 
 import pytest
-from selenium.common import NoSuchElementException
+
 from selenium.webdriver.common.by import By
 
 
