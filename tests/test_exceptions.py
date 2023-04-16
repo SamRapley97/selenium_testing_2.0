@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -72,5 +74,19 @@ class TestExceptions:
         text = row1.get_attribute("value")
         assert text == "Hello darkness my old friend", f"${text} does not equal 'Hello darkness my old friend'"
 
+    @pytest.mark.exceptions
+    @pytest.mark.state_element
+    def test_state_element_reference(self, driver):
+        # Open the page
+        driver.get("https://practicetestautomation.com/practice-test-exceptions/")
 
+        # Find instructions text element
+        instructions = driver.find_element(By.ID, "instructions")
+
+        # Push add button
+        add = driver.find_element(By.XPATH, "//div[@id='row1']/button[@name='Add']")
+        add.click()
+
+        # Verify instruction text element is no longer displayed
+        assert WebDriverWait(driver, 10).until(EC.invisibility_of_element_located(instructions))
 
