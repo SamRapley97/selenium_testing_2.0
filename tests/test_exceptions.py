@@ -90,3 +90,19 @@ class TestExceptions:
         # Verify instruction text element is no longer displayed
         assert WebDriverWait(driver, 10).until(EC.invisibility_of_element_located(instructions))
 
+    @pytest.mark.exceptions
+    @pytest.mark.timeout_exception
+    def test_state_timeout_exception(self, driver):
+        # Open the page
+        driver.get("https://practicetestautomation.com/practice-test-exceptions/")
+
+        # Push add button
+        add = driver.find_element(By.XPATH, "//div[@id='row1']/button[@name='Add']")
+        add.click()
+
+        # Verify second input field is displayed
+        wait = WebDriverWait(driver, 3)
+        row2 = wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input")))
+        assert row2.is_displayed(), "Row 2 input should be displayed, but it is not"
+
+
