@@ -1,9 +1,7 @@
-from selenium.webdriver.common import By
+from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
+from page_objects.base_page import BasePage
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support.wait import expected_conditions as EC
-
-from page_objects.BasePage import BasePage
 
 
 class LoginPage(BasePage):
@@ -16,11 +14,11 @@ class LoginPage(BasePage):
         super().__init__(driver)
 
     def open(self):
-        super().open_url(self.__url)
+        super()._open_url(self.__url)
 
     def execute_login(self, username: str, password: str):
-        super().type(self.__username_field, username)
-        super().type(self.__password_locator, password)
-        super().click(self.__button_locator)
+        super()._type(self.__username_field, username)
+        super()._type(self.__password_locator, password)
+        super()._click(self.__button_locator)
 
 

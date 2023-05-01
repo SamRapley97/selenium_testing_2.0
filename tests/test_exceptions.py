@@ -23,7 +23,7 @@ class TestExceptions:
         # Verify Row 2 input field is displayed
 
         input_field = driver.find_element(By.XPATH, "//div[@id='row2']/input[@class='input-field']")
-        assert input_field.is_displayed()
+        assert input_field._is_displayed()
 
     @pytest.mark.exceptions
     @pytest.mark.debug
@@ -103,6 +103,6 @@ class TestExceptions:
         # Verify second input field is displayed
         wait = WebDriverWait(driver, 3)
         row2 = wait.until(EC.visibility_of_element_located((By.XPATH, "//div[@id='row2']/input")))
-        assert row2.is_displayed(), "Row 2 input should be displayed, but it is not"
+        assert row2._is_displayed(), "Row 2 input should be displayed, but it is not"
 
 
