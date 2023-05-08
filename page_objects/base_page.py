@@ -16,6 +16,10 @@ class BasePage:
         self._wait_until_element_visible(locator, time)
         self._find(locator).send_keys(text)
 
+    def _clear(self, locator: tuple, time: int = 10):
+        self._wait_until_element_visible(locator, time)
+        self._find(locator).clear()
+
     def _click(self, locator: tuple, time: int = 10):
         self._wait_until_element_visible(locator, time)
         self._find(locator).click()
@@ -23,6 +27,12 @@ class BasePage:
     def _wait_until_element_visible(self, locator: tuple, time: int = 10):
         wait = WebDriverWait(self._driver, time)
         wait.until(EC.visibility_of_any_elements_located(locator))
+
+    def _wait_until_element_clickable(self, locator: tuple, time: int = 10):
+        wait = WebDriverWait(self._driver, time)
+        wait.until(EC.element_to_be_clickable(locator))
+
+
 
     @property
     def current_url(self) -> str:
@@ -40,3 +50,5 @@ class BasePage:
     def get_text(self, locator: tuple, time: int = 10) -> str:
         self._wait_until_element_visible(locator, time)
         return self._find(locator).text
+
+
